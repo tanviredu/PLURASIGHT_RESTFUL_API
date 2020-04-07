@@ -145,6 +145,11 @@ class MeetingController extends Controller
 # but remember the migration have to be CreateMeetingUserTable
 # and the table name meeting_user
 
+## REMEMBER THE RELATION IS MADE IN THE MODEL FILE
+## BELONGS TO MANY
+## FIRST YOU NEED TO MAKE A RELATION IN THE User.php and Meeting.php
+## then you can use in eloquent query
+
 
 
 
