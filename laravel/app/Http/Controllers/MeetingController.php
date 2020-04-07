@@ -139,6 +139,11 @@ class MeetingController extends Controller
 # AUTOMATICALLY
 # TO REMOVE THE ENTRY IN THE PIVOT TABLE USE deatach
 # $post->users()->deatch()
+#  the $post->users()->attach()
+# tells the laravel to fill the pivot table based on the relation
+# of the two table
+# but remember the migration have to be CreateMeetingUserTable
+# and the table name meeting_user
 
 
 
