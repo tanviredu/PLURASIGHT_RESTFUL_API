@@ -1,0 +1,8 @@
+## first you need to add the
+use App\Http\Controllers;
+
+
+1)php artisan make:controller MeetingController --resource
+2)php artisan make:controller MeetingController --resource
+3)php artisan make:controller RegistrationController --resource
+4)php artisan make:controller AuthController

@@ -2,18 +2,22 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers;
 
 
 
 
-## First we make the get request
-## it will return all the 
-## meeting information
-## we also deffine which option is possible
-## and with except key word we will show 
+
+
+## with except key word we will show 
 ## which they cant
 ## this route can't do the update and post
 ## only get
+
+
+
+
+
 Route::resource('/meeting','MeetingController',[
     'except' => ['edit','create']
 ]);
@@ -40,5 +44,5 @@ Route::post('user',[
 ## now the sign in endpoint
 
 Route::post('user/signin',[
-    'uses' => ''
+    'uses' => 'AuthController@signin'
 ]);
