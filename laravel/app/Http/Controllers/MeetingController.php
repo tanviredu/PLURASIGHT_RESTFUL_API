@@ -86,6 +86,23 @@ class MeetingController extends Controller
                 'description' => $description
             ]);
 
+
+
+######################################################
+
+#  this controller is made for creating updating and deleting 
+# the meeting
+# but i also atttach the user who create the meeting
+# in the pivot table
+# but the other registration who have to do it manually
+## in the RegistrationController
+## the person create a meeting will be attached in the meeting
+## but the other users have to be added in the Registration controller
+
+############################################################
+
+
+
             if ($meeting->save()){
                 // remeber in the 
                 // Meeting Model
@@ -95,6 +112,7 @@ class MeetingController extends Controller
                 // has multiple user
                 // so we can attach many user 
                 // in one meeting object
+                
                 $meeting->users()->attach($user_id);
                 // so we save the meeting time
                 // time,title,description
