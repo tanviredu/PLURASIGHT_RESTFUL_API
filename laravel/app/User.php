@@ -38,6 +38,9 @@ class User extends Authenticatable
     ];
 
     public function meetings(){
+        ## this is a many to many relation
+        ## thats why belongs to
+        ## and we make the pivot table
         return $this->belongsToMany('App\Meeting');
     }
 }
