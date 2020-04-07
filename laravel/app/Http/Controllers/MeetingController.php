@@ -30,7 +30,7 @@ class MeetingController extends Controller
      */
     public function index()
     {
-        //
+        return "it worked";
     }
 
     /**
