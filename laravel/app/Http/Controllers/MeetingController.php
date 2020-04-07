@@ -117,6 +117,58 @@ class MeetingController extends Controller
             return response()->json($response,404);
     }
 
+
+#################################################################
+# VERY VERY IMPORTANT
+# WHEN YOU WORK WITH THE MANY TO MANY RELSTIONSHIP
+# AND WHEN YOU INSERT DATA LIKE ADDING A USER IN POST TABLE
+# WHICH HAS MANY TO MANY RELATIONSHIP WITH USERS TABLE
+#  YOU NEED A PIVOT TABLE
+# WHICH HOLDS THE ID OR THE FOREIGH KEY OF BOTH IF YOU DO
+
+
+
+# TO DO IT VERY EASILY WHAT YOU DO IS
+
+# CREATE THE OBJECT LIKE
+# $user = new User(data)  // this is the user object 
+# THEN YOU ATTACH THE USER WITH THE $post OBJECT BUT IN A DIFFERENT WAY
+# YOU ADD POST THEN THE METHOD USERS THEN attach command
+# $post->users()->attach($user)
+#  IT WILL NOT ONLY ADD THE USER BUT ALSO ADD AN ENTRY IN THE PIVOT TABLE
+# AUTOMATICALLY
+# TO REMOVE THE ENTRY IN THE PIVOT TABLE USE deatach
+# $post->users()->deatch()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##################################################################
+
+
+
+
+
+
+
+
+
+
     /**
      * Display the specified resource.
      *
@@ -126,6 +178,7 @@ class MeetingController extends Controller
     public function show($id)
     {
         // we have to filter the meeting with id
+        // this is a join query
         $meeting = Meeting::with('users')->where('id',$id)->firstOrFail();
         $meeting->view_meetings = [
             'href' => 'api/meeting',
