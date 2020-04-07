@@ -34,7 +34,14 @@ class RegistrationController extends Controller
      */
     public function store(Request $request)
     {
-        return "it worked";
+        // this is a post request
+        // it will register the person 
+        // with a specfic use id 
+        // with a meeting id
+
+        $meeting_id = $request->input('meeting_id');
+        $user_id = $request->input('user_id');
+
     }
 
     /**
