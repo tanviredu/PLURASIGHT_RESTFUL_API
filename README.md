@@ -1,4 +1,4 @@
-# this prohect is done with a many to many relationship
+# this project is done with a many to many relationship
 ### one user can have multiple meeting
 ### one meeting can have multiple user
 ## we make this by using  a pivot table
