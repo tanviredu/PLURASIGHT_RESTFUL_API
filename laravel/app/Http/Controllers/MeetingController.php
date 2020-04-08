@@ -16,6 +16,18 @@ class MeetingController extends Controller
     public function __construct()
     {
         #$this->middleware('name');
+        ## now we add a middle ware 
+        ## in the jwt auth
+        ## now you need to tell the middleware
+        ## which route you need to protect
+        # with the additional parameter
+        ## we do not protect all the route
+        $this->middleware('jwt.auth',['only' => [
+            'update','store','destroy'
+        ]]);
+
+        ## now go to the Kernel.php routemiddleware and add
+        ## this middleware
     }
 
 

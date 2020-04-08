@@ -5,7 +5,9 @@ use App\User;
 
 ## this import must be here to work
 use Illuminate\Http\Request;
-
+use Tymon\JWTAuth\Facades\JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 class AuthController extends Controller
 {
     public function store(Request $request){
@@ -17,7 +19,7 @@ class AuthController extends Controller
         $this->validate($request,[
             'name' => 'required',
             'email' => 'required|email',
-            'password' => 'required|'
+            'password' => 'required'
         ]);
 
         // if the data is coming properly
@@ -61,28 +63,86 @@ class AuthController extends Controller
 
     public function signin(Request $request){
 
+
+################################################################3
+
+
+## REMEMBER YOU NEED TO CHANGE THE USER MODEL 
+## TOO DO THIS THREE THINGS
+
+#1) import this in User.php
+#use Tymon\JWTAuth\Contracts\JWTSubject;
+
+# then this
+#class User extends Authenticatable implements JWTSubject{}
+
+## now add two method
+
+#public function getJWTIdentifier()
+#{
+#    return $this->getKey();
+#}
+
+#and this
+
+
+#public function getJWTCustomClaims()
+#{
+#    return [];
+#}
+
+
+## then it will work fine
+
+
+
+
+
+
+##################################################################3
+
         // first validate
         $this->validate($request,[
             'email' => 'required|email',
             'password' => 'required'
         ]);
+
+
+        $credentials = $request->only('email','password');
         
-        // if validated then we found the user
-        // fetch the email and password
-        $email = $request->input('email');
-        $password = $request->input('password');
 
-        $user = [
-            'name' => 'Name',
-            'email' => $email,
-            'password' => $password
-        ];
+        try{
+            if(!$token = JWTAuth::attempt($credentials)){
+                return response()->json(['msg'=>'invalid credentials'],401);
+            }
+        }catch(JWTException $e){
+            return response()->json(['msg'=>'unknown problem'],500);
+            
+        }
 
-        $response = [
-            'msg' => 'User signed In',
-            'user' => $user
-        ];
+        return response()->json(['token' => $token]);
 
-        return response()->json($response,200);
+
+
+
+
+        
+        // // if validated then we found the user
+        // // fetch the email and password
+        // $email = $request->input('email');
+        // $password = $request->input('password');
+
+        // $user = [
+        //     'name' => 'Name',
+        //     'email' => $email,
+        //     'password' => $password
+        // ];
+
+        // $response = [
+        //     'msg' => 'User signed In',
+        //     'user' => $user
+        // ];
+
+        // return response()->json($response,200);
     }
 }
